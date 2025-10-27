@@ -1,0 +1,21 @@
+# Go build
+bin/
+build/
+dist/
+*.test
+coverage.out
+
+# IDE
+.vscode/
+.idea/
+
+# Env
+.env
+.env.*
+
+# macOS system
+.DS_Store
+
+# Docker
+*.log
+*.pid
