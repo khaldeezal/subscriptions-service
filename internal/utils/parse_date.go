@@ -1,4 +1,4 @@
-package subscriptions
+package utils
 
 import (
 	"fmt"
@@ -6,7 +6,7 @@ import (
 )
 
 // parseYearMonth accepts YYYY-MM or MM-YYYY and returns the first day of that month in UTC.
-func parseYearMonth(s string) (time.Time, error) {
+func ParseYearMonth(s string) (time.Time, error) {
 	var y, m int
 	if len(s) == 7 && s[4] == '-' { // YYYY-MM
 		if _, err := fmt.Sscanf(s, "%d-%d", &y, &m); err != nil {
@@ -29,10 +29,10 @@ func parseYearMonth(s string) (time.Time, error) {
 }
 
 // ymString returns YYYY-MM string
-func ymString(t time.Time) string { return t.Format("2006-01") }
+func YmString(t time.Time) string { return t.Format("2006-01") }
 
 // monthsOverlapInclusive counts full months overlapping between [aStart, aEnd] and [bStart, bEnd] inclusive.
-func monthsOverlapInclusive(aStart time.Time, aEnd *time.Time, bStart time.Time, bEnd *time.Time) int {
+func MonthsOverlapInclusive(aStart time.Time, aEnd *time.Time, bStart time.Time, bEnd *time.Time) int {
 	start := aStart
 	if bStart.After(start) {
 		start = bStart

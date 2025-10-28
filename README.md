@@ -6,7 +6,7 @@
 ## Быстрый старт
 1. Скопируйте `.env.example` → `.env` (или задайте переменные окружения).
 2. `docker compose up --build`
-3. API: `http://localhost:8088/api/v1`
+3. API: `http://localhost:8080/api/v1`
 4. Swagger UI: `http://localhost:8081` (читает `openapi/openapi.yaml`).
 
 ## Переменные окружения
