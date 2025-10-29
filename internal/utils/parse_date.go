@@ -5,9 +5,9 @@ import (
 	"time"
 )
 
-// parseYearMonth accepts YYYY-MM or MM-YYYY and returns the first day of that month in UTC.
 func ParseYearMonth(s string) (time.Time, error) {
 	var y, m int
+
 	if len(s) == 7 && s[4] == '-' { // YYYY-MM
 		if _, err := fmt.Sscanf(s, "%d-%d", &y, &m); err != nil {
 			return time.Time{}, err
@@ -20,7 +20,6 @@ func ParseYearMonth(s string) (time.Time, error) {
 		return time.Time{}, fmt.Errorf("bad year-month format, use YYYY-MM or MM-YYYY")
 	}
 
-	// 🔒 Жёсткая проверка диапазона месяца:
 	if m < 1 || m > 12 {
 		return time.Time{}, fmt.Errorf("month out of range (1..12)")
 	}
@@ -28,16 +27,14 @@ func ParseYearMonth(s string) (time.Time, error) {
 	return time.Date(y, time.Month(m), 1, 0, 0, 0, 0, time.UTC), nil
 }
 
-// ymString returns YYYY-MM string
 func YmString(t time.Time) string { return t.Format("2006-01") }
 
-// monthsOverlapInclusive counts full months overlapping between [aStart, aEnd] and [bStart, bEnd] inclusive.
 func MonthsOverlapInclusive(aStart time.Time, aEnd *time.Time, bStart time.Time, bEnd *time.Time) int {
 	start := aStart
 	if bStart.After(start) {
 		start = bStart
 	}
-	// choose min end (handle nils)
+
 	var end time.Time
 	if aEnd != nil && bEnd != nil {
 		if aEnd.Before(*bEnd) {

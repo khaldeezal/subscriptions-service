@@ -154,7 +154,6 @@ func (r *Repository) List(ctx context.Context, f *domain.ListFilter) ([]domain.S
 	return out, rows.Err()
 }
 
-// Update updates all fields.
 func (r *Repository) Update(ctx context.Context, id string, in *domain.CreateInput) error {
 	start, err := utils.ParseYearMonth(in.StartDate)
 	if err != nil {
